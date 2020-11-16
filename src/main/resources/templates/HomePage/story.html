@@ -1,10 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>story</title>
+    <!-- <title>Hello, world!</title> -->
+    <!-- 测试直接使用路径，不启动server容器 -->
+    <!--<link rel="stylesheet" href="../../static/css/theme-black.css">-->
+    <link rel="stylesheet" href="/css/theme-black.css">
+</head>
+
+<body>
+    <!-- <h1>Hello, world!</h1> -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <!--提示：本页面内容遇到图片时有两个记录，一个为编辑页面效果测试时的，一个就是在springboot,web project启动时用的-->
+    <!-- 主要容器 -->
+    <div class="container-fluid" style="padding: 0;">
+        <!-- <p>main container,</p> -->
+        <!-- 导航栏 -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark"
+            style="border-bottom-left-radius: 1rem;border-bottom-right-radius: 1rem;">
+            <a class="navbar-brand btn btn-info">
+                <!-- <span>其他内容</span> -->
+                <!--<img src="../../static/image/icon/left-arrow.png" width="25" alt="left arrow,">-->
+                <img src="/image/icon/left-arrow.png" width="25" />
+                <!--<img src="../../static/image/icon/other.png" width="25" alt="">-->
+                <img src="/image/icon/other.png" width="25" />
+            </a>
+            <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <!-- <span class="navbar-toggler-icon"></span> -->
+                <!--<img src="../../static/image/icon/download-homepage.png" alt="" width="25" height="25">-->
+                <img src="/image/icon/download-homepage.png" width="25" />
+            </button>
+            <div id="my-nav" class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <!-- <li class="divide"></li>                        -->
+                    <div class="dropdown-divider"></div>
+                    <li class="navbar-item">
+                        &nbsp;
+                        <a href="#" class="navbar-link btn btn-primary">
+                            <!-- <span>download:&nbsp;apk</span> -->
+                            <!--<img src="../../static/image/icon/android.png" width="25" alt="">-->
+                            <img src="/image/icon/android.png" width="25">
+                            <!--<img src="../../static/image/icon/download-homepage.png" width="25" alt="">-->
+                            <img src="/image/icon/download-homepage.png" width="25">
+                        </a>
+                    </li>
+                    <div class="dropdown-divider" style="color: black;border-color: black;"></div>
+                    <li class="navbar-item" data-toggle="tooltip" data-placement='bottom' title="ios package download.">
+                        &nbsp;
+                        <a href="#" class="navbar-link btn btn-warning">
+                            <!--<img src="../../static/image/icon/iOS-apple.png" width="25" alt="">-->
+                            <img src="/image/icon/iOS-apple.png" width="25">
+                            <!--<img src="../../static/image/icon/download-homepage.png" width="25" alt="">-->
+                            <img src="/image/icon/download-homepage.png" width="25">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- 底部固定显示网站备案号的导航栏 -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom justify-content-center">
+            <a href="http://beian.miit.gov.cn" target="_blank" class="navbar-item  " aria-disabled="false"  style="color: white;">
+                <!-- 网站备案号，工信部要求 -->
+                <span>滇ICP备20005940号-2</span>
+            </a>
+        </nav>
+    </div>
+    <script>
+        $(function () {
+            console.log('page is loaded.');
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 </body>
+
 </html>
