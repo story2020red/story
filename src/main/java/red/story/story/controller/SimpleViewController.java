@@ -12,4 +12,16 @@ public class SimpleViewController {
     public String storyHome(){
         return "HomePage/story";
     }
+    @RequestMapping("/log-in-page")
+    public String goLogIn(){
+        return "user/user-login";
+    }
+    @RequestMapping("/register-page")
+    public String goRegister(){
+        return "user/user-register";
+    }
+    @RequestMapping("/developing")
+    public String developing(){
+        return "developing/thing-in-progress";
+    }
 }
