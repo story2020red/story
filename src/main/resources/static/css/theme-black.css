@@ -1,6 +1,7 @@
 html{
     background-color: black;
     color: white;
+    height: 100%;
 }
 body{
     background-color: black;
@@ -10,4 +11,3 @@ p{
     background-color: green;
     text-indent: 2rem;
 }
-

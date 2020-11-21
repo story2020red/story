@@ -1,9 +1,12 @@
 package red.story.story.controller;
 
+import org.apache.ibatis.annotations.Insert;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import red.story.story.dao.UserMapper;
 import red.story.story.entity.UserBehavior;
 
 import javax.servlet.http.HttpSession;
@@ -39,4 +42,33 @@ public class UserController {
         }
         return "online";
     }
+    @Autowired
+    private UserMapper mapper;
+    @RequestMapping("/check-out-email")
+    @ResponseBody
+    public String findIdByEmail(String email){
+        Integer a=mapper.findIdByEmail(email);
+        if (a ==null){
+            return "no";
+        }
+        return "yes";
+    }
+
+    /**
+     * 注册功能；
+     * 这个方法比单纯的查找对比user多一步，就是刷新验证码；
+     * @param email
+     * @return
+     */
+    @RequestMapping("/whether-or-not-this-email")
+    public String canRegisterByEmail(String email){
+        String s=findIdByEmail(email);
+        final String journal = "no";
+        if (journal.equals(s)){
+//            可以注册；1.生成验证码；2.写入数据库
+
+        }
+        return "";
+    }
+
 }

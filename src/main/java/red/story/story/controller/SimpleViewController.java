@@ -24,4 +24,8 @@ public class SimpleViewController {
     public String developing(){
         return "developing/thing-in-progress";
     }
+    @RequestMapping("/money-your-homepage")
+    public String moneyHome(){
+        return "developing/money-yourself-homepage";
+    }
 }

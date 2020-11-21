@@ -29,4 +29,11 @@ public interface UserMapper {
      */
     @Select("select * from user where email='${email}'")
     User findOneUserByEmail(String email);
+
+    /**查找一个ID通过电子邮件
+     * @param email
+     * @return
+     */
+    @Select("select id from user where email='${email}'")
+    Integer findIdByEmail(String email);
 }

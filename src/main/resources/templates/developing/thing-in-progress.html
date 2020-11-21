@@ -8,7 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <title>正在进行中,story,</title>
     <!-- <title>Hello, world!</title> -->
     <link rel="stylesheet" href="/css/theme-black.css">
@@ -16,70 +16,77 @@
 </head>
 
 <body>
-    <!-- <h1>Hello, world!</h1> -->
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
-    <div class="container">
-        <!-- &nbsp; -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <a class="navbar-brand" href="/">
-                <span>首页</span>
-            </a>
-        </nav>
-        <div class="container bg-secondary" style="padding-top: 56px;">
-            <!-- <span>aa</span> -->
-            <hr style="border-color: yellow;">
-            <div id="thingListParent" role="tablist" aria-multiselectable="true">
-                <div class="card">
-                    <div class="card-header" role="tab" id="section1HeaderId">
-                        <h5 class="mb-0">
-                            <a data-toggle="collapse"  href="#section1ContentId" data-target='#s1'
-                                aria-expanded="true" aria-controls="section1ContentId">
-                                Section 1
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="s1" class="collapse" role="tabpanel" aria-labelledby="section1HeaderId"
-                        data-parent="#thingListParent">
-                        <div class="card-body">
-                            Section 1 content
-                        </div>
-                    </div>
+<div class="container">
+    <!-- &nbsp; -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="/">
+            <span>首页</span>
+        </a>
+    </nav>
+    <div class="container bg-secondary" style="padding-top: 56px;padding-bottom: 3rem;border-bottom-left-radius: 1rem;">
+        <hr style="border-color: yellow;">
+        <div class="accordion bg-secondary" id="contentA">
+            <!-- 第一部分 -->
+            <div class="card bg-dark" id="MoneyStatePart"
+                 style="border-top-left-radius: 1rem;border-top-right-radius: 1rem;">
+                <div class="card-header" id="moneyTitleButton">
+                    <h2 class="mb-0">
+                        <a href="#" class="btn btn-link btn-block text-left" data-toggle='collapse'
+                           data-target='#moneyFunction'>
+                            <!-- <span>钱财乃身外之物。</span> -->
+                            <span>&nbsp;</span>
+                        </a>
+                    </h2>
                 </div>
-                <div class="card">
-                    <div class="card-header" role="tab" id="section2HeaderId">
-                        <h5 class="mb-0">
-                            <a data-toggle="collapse"  href="#section2ContentId" data-target="#s2"
-                                aria-expanded="true" aria-controls="section2ContentId">
-                                Section 2
+                <div class="collapse show" id="moneyFunction" data-parent="#contentA">
+                    <div class="card-body">
+                        <div class="container bg-info" style="border-top-left-radius: 1rem;padding-bottom: 1rem;">
+                            <p style="color: indigo;background-color: inherit;">
+                                <!-- <span>在时间轴上，现在以及将来；敲定当下的经济状况，自己的钱财、借款平台的还款计算；</span> -->
+                            </p>
+                            <a href="/money-your-homepage" class="btn btn-outline-danger">
+                                <!-- <span>资金页</span> -->
+                                <span>&nbsp;</span>
                             </a>
-                        </h5>
-                    </div>
-                    <div id="s2" class="collapse" role="tabpanel" aria-labelledby="section2HeaderId"
-                    data-parent="#thingListParent"
-                    >
-                        <div class="card-body">
-                            Section 2 content
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- 第二部分 -->
+            <div class="card bg-dark" id="practiceYou">
+                <div class="card-header" id="practiceHead">
+                    <h2 class="mb-0">
+                        <a href="#" class="btn btn-link btn-block text-left" data-toggle="collapse"
+                           data-target="#practiceContent">
+                            <!-- <span>修身齐家治国平天下</span> -->
+                            <span>&nbsp;</span>
+                        </a>
+                    </h2>
+                </div>
+                <div class="collapse" id="practiceContent" data-parent="#contentA">
+                    <div class="card-body">
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
         </div>
+        <hr style="border-color: gold;">
     </div>
-    <script>
-        $(function () {
-            console.log('page is loading.');
-        })
-    </script>
+</div>
+<script>
+    $(function () {
+        console.log('page is loading.');
+    })
+</script>
 </body>
 
 </html>

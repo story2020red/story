@@ -44,23 +44,34 @@
             </div>
             <hr>
             <div class="container">
+                <h6>
+                    <span style="color: gray;">email-tips:</span>
+                    <span id="emailTips" style="color: purple;">&nbsp;</span>
+                </h6>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="email">Email</span>
                     </div>
-                    <input class="form-control" type="text" name="" placeholder="email your." aria-label="email your."
+                    <input id="emailInputR" class="form-control" type="text" name="" placeholder="email your." aria-label="email your."
                         aria-describedby="email">
                 </div>
                 <hr>
+                <h6>
+                    <span style="color: green;">password-tips:</span>
+                    <span id="passwordTips" style="color: purple;">&nbsp;</span>
+                </h6>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="password">Password:</span>
                     </div>
-                    <input class="form-control" type="password" name="" placeholder="password your.please input"
+                    <input id="passwordInput" class="form-control" type="password" name="" placeholder="password your.please input"
                         aria-label="password your.please input" aria-describedby="password">
                 </div>
+                <h6>
+                    <span style="color: red;" id="finalTips">&nbsp;</span>
+                </h6>
                 <div style="text-align: center; margin-top: 1rem;">
-                    <button class="btn btn-light" type="button">
+                    <button id="registerButton" class="btn btn-light" type="button">
                         <span>注册</span>
                     </button>
                 </div>
@@ -70,7 +81,74 @@
     <script>
         $(function () {
             console.log('page is loading.');
+            listenEmail()
         })
+        var emialFormatRight=false
+        var passwordFormatRight=false
+        var emailCanRegister=false
+        function listenEmail() {
+            console.log('i am,');
+            $('#emailInputR').blur(function () {
+                console.log('check up email is existence.');
+                var pattern=/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
+                if(pattern.test(this.value)){
+                    console.log('you input email format is right.');
+                    $('#emailTips').get(0).innerHTML='格式正确'
+                    emialFormatRight=true
+                    // 向数据库查看是否存在,是否可以进行注册；
+                    $.ajax({
+                        url:'/check-out-email',
+                        type:'post',
+                        data:{email:this.value},
+                        success:function(data){
+                            console.log('server reply:'+data);
+                            if(data == 'no'){
+                                $('#emailTips').get(0).innerHTML='可以使用'
+                                emailCanRegister=true
+                            }else{
+                                $('#emailTips').get(0).innerHTML='该邮箱已被注册,请登录或找回密码'
+                                emailCanRegister=false
+                            }
+                        },
+                        error:function(data){
+                            console.log('server connection error:'+data);
+                        }
+                    })
+
+                }else{
+                    $('#emailTips').get(0).innerHTML='the email format is wrong.'
+                    emialFormatRight=false
+                }
+            })
+            // 密码的要求，不为空就行；
+            $('#passwordInput').blur(function () {
+                console.log('password requirement:not empty.');
+                if(this.value==''||this.value.trim()=='' ){
+                    $('#passwordTips').get(0).innerHTML='密码不为空'
+                    passwordFormatRight=false
+                }else{
+                    $('#passwordTips').get(0).innerHTML='格式正确'
+                    passwordFormatRight=true
+                }
+            })
+            $('#registerButton').click(function () {
+                console.log('register forward server,data;');
+                if(emailCanRegister == false || emialFormatRight == false || passwordFormatRight == false){
+                    $('#finalTips').get(0).innerHTML='上述输入有不成立的地方，请检查'
+                    return
+                }
+                $('#finalTips').get(0).innerHTML='&nbsp;'
+                console.log('register doing.');
+                $.ajax({
+                    url:'',
+                    type:'post',
+                    data:{password:$('#password').val()},
+                    success:function(data){
+                        console.log('server response:'+data);
+                    }
+                })
+            })
+        }
     </script>
 </body>
 

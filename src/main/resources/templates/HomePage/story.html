@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="mCustomScrollbar">
 
 <head>
     <!-- Required meta tags -->
@@ -8,12 +8,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <title>story</title>
-    <!-- <title>Hello, world!</title> -->
-    <!-- 测试直接使用路径，不启动server容器 -->
-    <!--<link rel="stylesheet" href="../../static/css/theme-black.css">-->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <title>story</title>  
     <link rel="stylesheet" href="/css/theme-black.css">
     <link rel="icon" type="image/x-icon" href="/image/icon/story.png" />
+    <link rel="stylesheet" href="/css/mdBootstrap-scrollbar.css">
     <style>
         #webAddressSet a {
             margin: .5rem;
@@ -21,11 +20,7 @@
     </style>
 </head>
 
-<body>
-    <!-- <h1>Hello, world!</h1> -->
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<body style="overflow: hidden;height: 100%;width: 100%;">
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
@@ -34,50 +29,61 @@
         crossorigin="anonymous"></script>
     <!--提示：本页面内容遇到图片时有两个记录，一个为编辑页面效果测试时的，一个就是在springboot,web project启动时用的-->
     <!-- 主要容器 -->
-    <div class="container-fluid" style="padding: 0;">
-        <!-- <p>main container,</p> -->
+    <div class="container-fluid scrollbar-deep-purple" style="overflow-y: auto;height: 100%;background-color: black;">
+        <!-- <div class="force-overflow"></div> -->
         <!-- 导航栏 -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark"
             style="border-bottom-left-radius: 1rem;border-bottom-right-radius: 1rem;">
-            <a class="navbar-brand btn btn-info" id="otherThing" onclick="window.location.href='/developing'" data-toggle="tooltip"
-            data-placement="bottom" title="有一些我正在做的事，"
-            >
+            <!-- 与本网站主题关系不大的一些事 -->
+            <a class="navbar-brand btn btn-info" id="otherThing" onclick="window.location.href='/developing'"
+                data-toggle="tooltip" data-placement="bottom" title="有一些我正在做的事，">
                 <!-- <span>其他内容</span> -->
                 <!--<img src="../../static/image/icon/left-arrow.png" width="25" alt="left arrow,">-->
                 <img src="/image/icon/left-arrow.png" width="25" />
                 <!--<img src="../../static/image/icon/other.png" width="25" alt="">-->
                 <img src="/image/icon/other.png" width="25" />
             </a>
+            <!-- 遇到小尺寸的设备时需要的一个菜单按钮 -->
             <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav"
                 aria-expanded="false" aria-label="Toggle navigation">
-                <!-- <span class="navbar-toggler-icon"></span> -->
-                <!--<img src="../../static/image/icon/download-homepage.png" alt="" width="25" height="25">-->
-                <!--<img src="/image/icon/download-homepage.png" width="25" />-->
-                <!--添加了用户相关后用个扩展型的图标-->
                 <img src="/image/icon/nine-point.png" width="25">
             </button>
+
             <div id="my-nav" class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
-                    <!-- <li class="divide"></li>                        -->
                     <div class="dropdown-divider"></div>
+                    <!-- 主软件安卓版本下载 -->
                     <li class="navbar-item">
                         &nbsp;
                         <a href="#" class="navbar-link btn btn-primary">
-                            <!-- <span>download:&nbsp;apk</span> -->
-                            <!--<img src="../../static/image/icon/android.png" width="25" alt="">-->
                             <img src="/image/icon/android.png" width="25">
-                            <!--<img src="../../static/image/icon/download-homepage.png" width="25" alt="">-->
                             <img src="/image/icon/download-homepage.png" width="25">
                         </a>
                     </li>
                     <div class="dropdown-divider" style="color: black;border-color: black;"></div>
+                    <!-- 苹果版本下载 -->
                     <li class="navbar-item" data-toggle="tooltip" data-placement='bottom' title="ios package download.">
                         &nbsp;
                         <a href="#" class="navbar-link btn btn-warning">
-                            <!--<img src="../../static/image/icon/iOS-apple.png" width="25" alt="">-->
                             <img src="/image/icon/iOS-apple.png" width="25">
-                            <!--<img src="../../static/image/icon/download-homepage.png" width="25" alt="">-->
                             <img src="/image/icon/download-homepage.png" width="25">
+                        </a>
+                    </li>
+                    <div class="dropdown-divider" style="border-color: black;"></div>
+                    <li class="navbar-item" data-toggle="tooltip" data-placement="bottom" title="widnows version">
+                        &nbsp;
+                        <a href="#" class="navbar-link btn btn-info">
+                            <!-- <span></span> -->
+                            <img src="/image/icon/windows.png" width="25" alt="">
+                            <img src="/image/icon/download-homepage.png" width="25" alt="">
+                        </a>
+                    </li>
+                    <div class="dropdown-divider" style="border-color: black;"></div>
+                    <li class="navbar-item">
+                        &nbsp;
+                        <a href="#" class="btn btn-success">
+                            <img src="/image/icon/linux.png" alt="" width="25">
+                            <img src="/image/icon/download-homepage.png" width="25" alt="">
                         </a>
                     </li>
                 </ul>
@@ -99,150 +105,60 @@
         </nav>
         <!-- 底部固定显示网站备案号的导航栏 -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom justify-content-center"
-            style="border-top-left-radius: 1rem;border-top-right-radius: 1rem;">
+            style="border-top-left-radius: 1rem;border-top-right-radius: 1rem;opacity: 1;">
             <a href="http://beian.miit.gov.cn" target="_blank" class="navbar-item  " aria-disabled="false"
                 style="color: white;" data-toggle="tooltip" data-placement="top" title="本网站备案号，点击查看虚实">
                 <!-- 网站备案号，工信部要求 -->
                 <span>滇ICP备20005940号-2</span>
             </a>
         </nav>
-        <!-- 首页的详细内容部分 -->
-        <div class="container" style="padding-top: 1rem;">
-            <!-- <p>&nbsp;home page details.</p> -->
-            <div class="alert alert-info" role="alert">
-                <span>最新消息：</span>
-                <!-- <strong>浏览器</strong> -->
-                <i>what?</i>
-            </div>
-            <!-- 巨幕展示内容项 -->
-            <div class="jumbotron" style="color: black;">
-                <div class="container">
-                    <h1 class="display-3">
-                        <span>story.</span>
-                    </h1>
-                    <!-- <span class="title">你说的去年那个人吗？</span> -->
-                    <!-- 副标题，小字说明， -->
-                    <h5 style="color: gray;">
-                        <span>本网站主要做一些小工具，目的呢，方便日常生活，生存之类的。</span>
-                    </h5>
-                    <hr>
-                    <div class="accordion" id="collapseSet01">
-                        <div class="btn-group" role="group" aria-label="Button group">
-                            <button class="btn btn-success" type="button" data-toggle="collapse"
-                                data-target="#contentTool" role="button" aria-expanded="false"
-                                aria-controls="contentTool">
-                                <span>工具</span>
-                            </button>
-                            <button class="btn btn-dark" type="button" data-toggle="collapse"
-                                data-target="#contentApplication" role="button" aria-controls="contentApplication"
-                                aria-expanded="false">
-                                <span>应用</span>
-                            </button>
-                            <button class="btn btn-danger" type="button" data-toggle="collapse"
-                                data-target="#contentGame" role="button" aria-expanded="false"
-                                aria-controls="contentGame">
-                                <span>游戏</span>
-                            </button>
-                        </div>
-                        <!-- 折叠内容展示区 -->
-                        <div class="collapse " id="contentTool" data-parent="#collapseSet01">
-                            <div class="card card-body bg-success">
-                                <!-- <p>tools content,</p> -->
-                                &nbsp;
-                            </div>
-                        </div>
-                        <div class="collapse " id="contentApplication" data-parent="#collapseSet01">
-                            <div class="card card-body bg-dark">
-                                <!-- <p>application.</p> -->
-                                &nbsp;
-                            </div>
-                        </div>
-                        <div class="collapse" id="contentGame" data-parent="#collapseSet01">
-                            <div class="card card-body bg-danger">
-                                <!-- &nbsp; -->
-                                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                                    <div class="toast-header">
-                                        <img class="rounded mr-2" src="/image/icon/android.png" width="25"
-                                            alt="Toast icon alternate text">
-                                        <strong class="mr-auto">Title</strong>
-                                        <small>Note</small>
-                                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast"
-                                            aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="toast-body">
-                                        &nbsp;
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <!-- 首页的详细内容部分,控制台 -->
+        <div class="container " style="padding-top: 1rem;padding-bottom: 59px;">
+            <div class="card bg-secondary">
+                <div class="card-header">
+                    <span style="color: burlywood;">console</span>
+                </div>
+                <div class="card-body">
+                    <!-- &nbsp; -->
+                    <div class="form-group">
+                        <!-- <label for="">8888</label> -->
+                        <textarea class="form-control " name="" id="" rows="18"
+                            style="background-color: black;color: white;"></textarea>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="container">
+                        <a href="#" class="btn btn-outline-primary" style="border: none;" >
+                            <img src="/image/animal/snake.png" width="25" alt="snake greedy.">
+                        </a>
+                        <a href="#" class="btn btn-outline-info" style="border: none;" >
+                            <img src="/image/icon/tetris.png" width="25" alt="">
+                        </a>
+                        <a href="#" class="btn btn-outline-warning" style="border: none;" >
+                            <img src="/image/icon/look-it-again-and-again.png" width="25" alt="">
+                        </a>
                     </div>
                 </div>
             </div>
-            <!-- 巨幕2 -->
-            <div class="jumbotron bg-info" style="color: black;">
-                <h5>常用网址：</h5>
-                <div class="card card-body bg-secondary">
-                    <!-- &nbsp; -->
-                    <div class="container-fluid" id="webAddressSet">
-                        <a class="btn btn-light" href="https://www.baidu.com/" target="_blank">
-                            <span>百度</span>
-                            <img src="/image/icon/baidu.png" alt="" width="20">
-                        </a>
-                        <!-- qq email -->
-                        <a href="https://mail.qq.com/" class="btn btn-light" target="_blank">
-                            <span>QQ邮箱</span>
-                            <img src="/image/icon/qq-email.png" width="20">
-                        </a>
-                        <!-- a li yun  -->
-                        <a href="https://www.aliyun.com/" class="btn btn-light" target="_blank">
-                            <span>阿里云</span>
-                        </a>
-                        <!-- 阿里巴巴矢量图标库 -->
-                        <a href="https://www.iconfont.cn/" class="btn btn-light" target="_blank">
-                            <span>IconFont</span>
-                        </a>
-                        <a href="https://unity.cn/" class="btn btn-light" target="_blank">
-                            <span>unity</span>
-                        </a>
-                        <a href="https://github.com/" class="btn btn-light" target="_blank">
-                            <span>github</span>
-                        </a>
-                        <a href="https://www.bilibili.com/" class="btn btn-light" target="_blank">
-                            <span>bilibili</span>
-                        </a>
-                        <a href="https://cn.bing.com/" class="btn btn-light" target="_blank">
-                            <span>必应</span>
-                        </a>
-                        <a href="https://fanyi.baidu.com/" class="btn btn-light" target="_blank">
-                            <span>百度翻译</span>
-                        </a>
-                        <a href="https://v4.bootcss.com/" class="btn btn-light" target="_blank">
-                            <span>bootstrap4</span>
-                        </a>
-                        <a href="https://mp.dayu.com/" class="btn btn-light" target="_blank">
-                            <span>大鱼号</span>
-                        </a>
-                        <a href="https://baijiahao.baidu.com/" class="btn btn-light" target="_blank">
-                            <span>百家号</span>
-                        </a>
-                        <a href="http://www.beian.gov.cn/" class="btn btn-light" target="_blank">
-                            <span>全国互联网安全管理服务平台</span>
-                        </a>
-                        <a href="https://www.bootcdn.cn/" class="btn btn-light" target="_blank">
-                            <span>bootstrap cdn.</span>
-                        </a>
-                    </div>
+            <!-- 其他常用网址 -->
+            <div class="card " style="margin-top: 3rem;background-color: black;border-color: aqua;">
+                <div class="card-header" style="border-color: aliceblue;">            
+                        <span style="color: saddlebrown;font-weight: bold;">常用网址大全：自备</span>                    
+                </div>
+                <div class="card-body">
+                    <a href="https://www.baidu.com/" target="_blank" class="btn btn-outline-primary">
+                        <span>百度一下</span>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-   
+
     <script>
         $(function () {
             console.log('page is loaded.');
             $('[data-toggle="tooltip"]').tooltip()
+
             // 处理用户图标点击，即：区分登录和未登录，并进行相应的跳转
             dealWithUserIconClick()
         })
@@ -254,9 +170,9 @@
                     type: 'post',
                     success: function (data) {
                         console.log('server reply:' + data);
-                        if(data == 'offline'){
+                        if (data == 'offline') {
                             // go log in.
-                            window.location.href='/log-in-page'
+                            window.location.href = '/log-in-page'
                         }
                     },
                     error: function (data) {

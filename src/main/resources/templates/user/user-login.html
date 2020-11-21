@@ -47,11 +47,15 @@
                             </div>
                         </h5>
                         <!-- <p class="card-text">Content</p> -->
+                        <h6>
+                            <span style="color: gray;">tips-for-email.</span>
+                            <span style="color: indianred;" id="emailTips">&nbsp;</span>
+                        </h6>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="email">Email:</span>
                             </div>
-                            <input class="form-control" type="text" name="" placeholder="电子邮件"
+                            <input id="emailInput" class="form-control" type="text" name="" placeholder="电子邮件"
                                 aria-label="Recipient's text" aria-describedby="email">
                         </div>
                         <hr>
@@ -88,7 +92,33 @@
     <script>
         $(function () {
             console.log('page log in start.');
+            listenLogin()
         })
+        function listenLogin() {
+            $('#emailInput').blur(function () {
+                console.log('leave input for email,check out format.');
+                // 电子邮箱格式：
+                var pattern=/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
+                if(pattern.test(this.value)){
+                    $('#emailTips').get(0).innerHTML='格式正确'
+                    // 向服务器查询邮箱是否存在；
+                    $.ajax({
+                        url:'check-out-email',
+                        type:'post',
+                        data:{email:this.value},
+                        success:function (data) {
+                            console.log('server reply:'+data);
+                        },
+                        error:function(data_e){
+                            console.log('connection error:'+data_e);
+                        }
+                    })
+                }
+                else{
+                    $('#emailTips').get(0).innerHTML='格式错误'
+                }
+            })
+        }
     </script>
 </body>
 
