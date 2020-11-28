@@ -1,15 +1,14 @@
 package red.story.story.controller;
-
-import org.apache.ibatis.annotations.Insert;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import red.story.story.dao.UserMapper;
 import red.story.story.entity.UserBehavior;
-
+import red.story.story.service.EmailSender;
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
+import java.util.UUID;
 
 /**
  * @author storyRed
@@ -37,18 +36,20 @@ public class UserController {
             return "offline";
         }
         String userStatus = userStatusObject.toString();
-        if (userStatus.equals(UserBehavior.NOT_LOGGED_IN)){
+        if (userStatus.equals(UserBehavior.NOT_LOGGED_IN)) {
             return "offline";
         }
         return "online";
     }
+
     @Autowired
     private UserMapper mapper;
+
     @RequestMapping("/check-out-email")
     @ResponseBody
-    public String findIdByEmail(String email){
-        Integer a=mapper.findIdByEmail(email);
-        if (a ==null){
+    public String findIdByEmail(String email) {
+        Integer a = mapper.findIdByEmail(email);
+        if (a == null) {
             return "no";
         }
         return "yes";
@@ -57,18 +58,42 @@ public class UserController {
     /**
      * 注册功能；
      * 这个方法比单纯的查找对比user多一步，就是刷新验证码；
+     *
      * @param email
      * @return
      */
     @RequestMapping("/whether-or-not-this-email")
-    public String canRegisterByEmail(String email){
-        String s=findIdByEmail(email);
+    @ResponseBody
+    public String canRegisterByEmail(String email, HttpSession session) {
+        String s = findIdByEmail(email);
         final String journal = "no";
-        if (journal.equals(s)){
+        if (journal.equals(s)) {
 //            可以注册；1.生成验证码；2.写入数据库
+            session.setAttribute("wait-register", email);
 
         }
-        return "";
+        return s;
+    }
+
+    @RequestMapping("/register-request")
+    @ResponseBody
+    public String register(String password, HttpSession session) throws MessagingException {
+//        email需要从session里取出
+        Object o = session.getAttribute("wait-register");
+        if (o == null) {
+            return "email no";
+        }
+        UUID uuid = UUID.randomUUID();
+        EmailSender.getEmailSender().sendEmail(o.toString(),
+                "请点击链接进行验证：http://localhost/" + "register-auth?email=" +
+                        o.toString() + "&code="+uuid);
+        return "email-send-over";
+    }
+
+    @RequestMapping("/register-auth")
+    @ResponseBody
+    public String registerAuth() {
+        return "register success:";
     }
 
 }

@@ -9,6 +9,10 @@ import red.story.story.entity.User;
 /**
  * @author storyRed
  * 实现数据存取
+ * --------------------------------------
+ * 我来做个样式看看先：
+ * --------2020-11-27 02:37:35 下午-----------倒尿start;
+ * -------2020-11-27 02:44:55 下午-------fail;
  */
 @Mapper
 @Repository
@@ -18,7 +22,7 @@ public interface UserMapper {
      * @param user, 需要添加的用户
      *测试正确 2020-11-17 02:58:45 下午
      */
-    @Insert("insert into user(email,password) values(#{email},#{password})")
+    @Insert("insert into user(email,password,status) values(#{email},#{password},#{status})")
     void inertOne(User user);
 
     /**
@@ -36,4 +40,6 @@ public interface UserMapper {
      */
     @Select("select id from user where email='${email}'")
     Integer findIdByEmail(String email);
+
+
 }

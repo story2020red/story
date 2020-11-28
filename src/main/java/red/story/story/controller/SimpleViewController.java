@@ -18,7 +18,7 @@ public class SimpleViewController {
     }
     @RequestMapping("/register-page")
     public String goRegister(){
-        return "user/user-register";
+        return "user/user-register-template-2020-11-22";
     }
     @RequestMapping("/developing")
     public String developing(){
@@ -27,5 +27,9 @@ public class SimpleViewController {
     @RequestMapping("/money-your-homepage")
     public String moneyHome(){
         return "developing/money-yourself-homepage";
+    }
+    @RequestMapping("/note-daily-home")
+    public String noteHome(){
+        return "note-daily/noteDailyHomePage";
     }
 }

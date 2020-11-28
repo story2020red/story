@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>story,</title>
+    <!--2020-11-22 12:52:54 下午-->
+     <link rel="stylesheet" href="/css/theme-black.css">
+    <!--<link rel="stylesheet" href="../../static/css/theme-black.css">-->
+     <link rel="icon" href="/image/icon/story.png" type="image/icon">
+    <!--<link rel="icon" href="../../static/image/icon/story.png" type="image/icon">-->
+    <script src="/js/regular_expression.js" ></script>
+    <!--<script src="../../static/js/regular_expression.js"></script>-->
+
+</head>
+
+<body>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <div class="container" style="padding-top: 2rem;">
+        <!-- 主要内容以卡片区域展示，并缩短大小，使其居中 -->
+        <div class="row justify-content-center">
+            <!-- 列宽的问题，默认col是最小尺寸， -->
+            <div class="col-11 col-md-5 col-sm-6">
+                <div class="card " style="background-color: black;border-color: purple;">
+                    <div class="card-header" style="border-color: chocolate;">
+                        <span style="color: salmon;">注册新用户</span>
+                    </div>
+                    <div class="card-body">
+                        <!-- 电子邮件输入部分，email input part. -->
+                        <div class="input-group">
+                            <!-- 控件先头部分，展示主要内容主题 -->
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="emailLabel" style="color: seagreen;">电子邮件：</span>
+                            </div>
+                            <!-- 控件主要功能部分，接收用户输入，获取数据，响应动作入口； -->
+                            <input id="emailInput" class="form-control" type="text" name="" placeholder="email."
+                                aria-label="email input." aria-describedby="emailLabel" style="color: sienna;">
+                        </div>
+                        <p style="background-color: black;text-indent: 0%;">
+                            <span style="color: white;">tips&nbsp;for&nbsp;email:</span>
+                            <span id="emailTipsValue">&nbsp;</span>
+                        </p>
+                        <!-- 密码输入部分，password input part. -->
+                        <div class="input-group" style="margin-top: 1rem;">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="passwordLabel" style="color: slateblue;">密码</span>
+                            </div>
+                            <input id="passwordInput" class="form-control" type="password" name=""
+                                placeholder="password." aria-label="password." aria-describedby="passwordLabel"
+                                style="color: black;">
+                            <div class="input-group-append">
+                                <a id="passwordShowAndHiddenControl" href="#" class="btn btn-secondary"
+                                    data-toggle='tooltip' data-placement='bottom' title="显示"
+                                    show-and-hidden-input='#passwordInput' sahi-show='#show-image'
+                                    sahi-hide='#hidden-image'>
+                                    <img src="/image/icon/eye.png" width="20" alt="" id="show-image"
+                                        style="display: inline;">
+                                    <img src="/image/icon/eye-close.png" width="20" alt="" id="hidden-image"
+                                        style="display: none;">
+                                </a>
+                            </div>
+                        </div>
+                        <p style="background-color: black;text-indent: 0%;">
+                            <span style="color: white;">tips&nbsp;for&nbsp;password:</span>
+                            <span>&nbsp;</span>
+                        </p>
+                    </div>
+                    <div class="card-footer" style="border-color: brown;">
+                        <div class="row">
+                            <div class="col" style="text-align: right;">
+                                <div class="btn-group" role="group" aria-label="register and other">
+                                    <a id="register_button" href="#" class="btn btn-outline-primary">
+                                        <span>注册</span>
+                                    </a>
+                                    <a href="/" class="btn btn-outline-info">
+                                        <span>首页</span>
+                                    </a>
+                                    <a href="/log-in-page" class="btn btn-outline-danger">
+                                        <span>登录</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            console.log('page is loading.');
+            $("[data-toggle='tooltip'").tooltip()
+            // 设置密码显示隐藏的响应；
+            listenPasswordShowAndHidden('passwordShowAndHiddenControl')
+            // 监听email input的离开事件，字符串是否合乎规范，功能上的目的：该邮箱是否可以注册；
+            listenFocusLeaveEmailInput('emailInput')
+            // 监听密码输入框事件
+            listenPasswordActionBlur('passwordInput')
+            // 注册按钮事件处理
+            registerAction()
+        })
+        function registerAction() {
+            $('#register_button').click(function () {
+                console.log('click register button,first,see form verifications is all right or not,secondly,request server.');
+                // 先查看填入框是否全部允许
+
+            })
+        }
+        function listenPasswordActionBlur(target_element_id) {
+            $('#' + target_element_id).blur(function () {
+                console.log('focus leave input:' + target_element_id + ",implement the value is regular or not.");
+                var value = this.value
+                if (value != '') {
+                    value = value.trim()
+                }
+                if (value == '') {
+                    console.log('please input valid password value.');
+                } else if (!reg_password.test(value)) {
+                    console.log('the password is irregular.');
+                } else {
+                    console.log('confragulations,the password pass the verifications.');
+                }
+            })
+        }
+        function listenFocusLeaveEmailInput(goal_element_id) {
+            $('#' + goal_element_id).blur(function () {
+                console.log('leave input :execute regular verify.');
+                var val_x = ''
+                if (this.value == '' || this.value.trim() == '') {
+                    console.log('this input for ' + goal_element_id + ' is empty,please input some valid string.');
+                    this.value = ''
+                } else {
+                    val_x = this.value.trim()
+                    if (reg_email.test(val_x)) {
+                        console.log('your input content for email is regular.' + val_x);
+                        // 邮箱格式正确，向服务器询问是否可以注册；
+                        $.ajax({
+                            url: '/whether-or-not-this-email',
+                            type: 'post',
+                            data: { email: val_x },
+                            success: function (data) {
+                                console.log('server interactive success,reply content:' + data);
+                                if(data == 'no'){
+                                    // 说明该邮箱不存在与DB，可以进行注册
+                                    $('#emailTipsValue').get(0).innerHTML='可以进行注册.'
+                                }else{
+                                    $('#emailTipsValue').get(0).innerHTML='该邮箱已经被注册.'
+                                }
+                            },
+                            error: function (data) {
+                                console.log('visit server fail,error:' + data);
+                            }
+                        })
+                    } else {
+                        console.log('this email input value is irregular,please change it.' + val_x);
+                    }
+                }
+            })
+        }
+
+        function listenPasswordShowAndHidden(parameter_01_button_id) {
+            $('#' + parameter_01_button_id).click(function () {
+                console.log('show and hide button:' + this.id + ' is clicked.');
+                if ($('' + $(this).attr('sahi-show')).css('display') == 'none') {
+                    // 当前需要显示的内容状态为显示，那么点击处按钮功能目标为隐藏，所以需要执行的操作hide
+                    $('' + $(this).attr('sahi-show')).css('display', 'inline')
+                    $('' + $(this).attr('sahi-hide')).css('display', 'none')
+                    // 
+                    $('' + $(this).attr('show-and-hidden-input')).attr('type', 'password')
+                    $(this).attr('data-original-title', '显示')
+                    $(this).tooltip('hide')
+                    $(this).tooltip('show')
+                } else {
+                    // 默认password input,点亮密码明文，直接修改input type password->text
+                    $('' + $(this).attr('sahi-show')).css('display', 'none')
+                    $('' + $(this).attr('sahi-hide')).css('display', 'inline')
+                    $('' + $(this).attr('show-and-hidden-input')).attr('type', 'text')
+                    // 此处工具提示框的显示内容为自己查找页面html元素得到的属性值，有可能当bootstrap源码变动会失效；
+                    $(this).attr('data-original-title', '隐藏')
+                    $(this).tooltip('hide')
+                    $(this).tooltip('show')
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

@@ -32,14 +32,14 @@
     <div class="container-fluid scrollbar-deep-purple" style="overflow-y: auto;height: 100%;background-color: black;">
         <!-- <div class="force-overflow"></div> -->
         <!-- 导航栏 -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark"
-            style="border-bottom-left-radius: 1rem;border-bottom-right-radius: 1rem;">
+        <nav class="navbar navbar-expand-lg bg-dark"
+            style="border-bottom-left-radius: 1rem;border-bottom-right-radius: 1rem;border:1px solid brown;border-top: none;">
             <!-- 与本网站主题关系不大的一些事 -->
-            <a class="navbar-brand btn btn-info" id="otherThing" onclick="window.location.href='/developing'"
+            <a class="navbar-brand btn btn-outline-danger" id="otherThing" onclick="window.location.href='/developing'"
                 data-toggle="tooltip" data-placement="bottom" title="有一些我正在做的事，">
                 <!-- <span>其他内容</span> -->
                 <!--<img src="../../static/image/icon/left-arrow.png" width="25" alt="left arrow,">-->
-                <img src="/image/icon/left-arrow.png" width="25" />
+                <img src="/image/icon/left-arrow.png" width="25" style="color: brown;" />
                 <!--<img src="../../static/image/icon/other.png" width="25" alt="">-->
                 <img src="/image/icon/other.png" width="25" />
             </a>
@@ -55,7 +55,7 @@
                     <!-- 主软件安卓版本下载 -->
                     <li class="navbar-item">
                         &nbsp;
-                        <a href="#" class="navbar-link btn btn-primary">
+                        <a href="#" class="navbar-link btn btn-outline-primary">
                             <img src="/image/icon/android.png" width="25">
                             <img src="/image/icon/download-homepage.png" width="25">
                         </a>
@@ -64,7 +64,7 @@
                     <!-- 苹果版本下载 -->
                     <li class="navbar-item" data-toggle="tooltip" data-placement='bottom' title="ios package download.">
                         &nbsp;
-                        <a href="#" class="navbar-link btn btn-warning">
+                        <a href="#" class="navbar-link btn btn-outline-warning">
                             <img src="/image/icon/iOS-apple.png" width="25">
                             <img src="/image/icon/download-homepage.png" width="25">
                         </a>
@@ -72,7 +72,7 @@
                     <div class="dropdown-divider" style="border-color: black;"></div>
                     <li class="navbar-item" data-toggle="tooltip" data-placement="bottom" title="widnows version">
                         &nbsp;
-                        <a href="#" class="navbar-link btn btn-info">
+                        <a href="#" class="navbar-link btn btn-outline-info">
                             <!-- <span></span> -->
                             <img src="/image/icon/windows.png" width="25" alt="">
                             <img src="/image/icon/download-homepage.png" width="25" alt="">
@@ -81,7 +81,7 @@
                     <div class="dropdown-divider" style="border-color: black;"></div>
                     <li class="navbar-item">
                         &nbsp;
-                        <a href="#" class="btn btn-success">
+                        <a href="#" class="btn btn-outline-success">
                             <img src="/image/icon/linux.png" alt="" width="25">
                             <img src="/image/icon/download-homepage.png" width="25" alt="">
                         </a>
@@ -104,8 +104,8 @@
             </div>
         </nav>
         <!-- 底部固定显示网站备案号的导航栏 -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom justify-content-center"
-            style="border-top-left-radius: 1rem;border-top-right-radius: 1rem;opacity: 1;">
+        <nav class="navbar navbar-expand-lg navbar-dark  fixed-bottom justify-content-center"
+            style="border-top-left-radius: 1rem;border-top-right-radius: 1rem;opacity: 1;border: 1px solid aqua;background-color: black;">
             <a href="http://beian.miit.gov.cn" target="_blank" class="navbar-item  " aria-disabled="false"
                 style="color: white;" data-toggle="tooltip" data-placement="top" title="本网站备案号，点击查看虚实">
                 <!-- 网站备案号，工信部要求 -->
@@ -114,21 +114,21 @@
         </nav>
         <!-- 首页的详细内容部分,控制台 -->
         <div class="container " style="padding-top: 1rem;padding-bottom: 59px;">
-            <div class="card bg-secondary">
-                <div class="card-header">
+            <div class="card" style="background-color: black;border: 1px solid  slategrey;">
+                <div class="card-header" style="border-bottom: 1px solid darkblue;">
                     <span style="color: burlywood;">console</span>
                 </div>
                 <div class="card-body">
                     <!-- &nbsp; -->
                     <div class="form-group">
                         <!-- <label for="">8888</label> -->
-                        <textarea class="form-control " name="" id="" rows="18"
-                            style="background-color: black;color: white;"></textarea>
+                        <textarea class="form-control" disabled name="" id="" rows="18"
+                            style="background-color: black;color: white;">nothing here.</textarea>
                     </div>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer " style="border-top: 1px solid   chartreuse;background-color: #333;">
                     <div class="container">
-                        <a href="#" class="btn btn-outline-primary" style="border: none;" >
+                        <a href="#" class="btn btn-outline-primary"  style="border: none;">
                             <img src="/image/animal/snake.png" width="25" alt="snake greedy.">
                         </a>
                         <a href="#" class="btn btn-outline-info" style="border: none;" >
